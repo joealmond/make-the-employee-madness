@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import "../Components/EmployeeTable.css";
 
 const fetchEmployees = async () => {
-  const data = await fetch("/api/employees/");
-  const employees = await data.json();
+  const res = await fetch("/api/employees/");
+  if (!res.ok) return console.error('Could not fetch.')
+  const employees = await res.json();
   return employees;
 };
 
@@ -56,7 +57,7 @@ const EmployeeList = () => {
               <td>{employee.level}</td>
               <td>{employee.position}</td>
               <td>
-                <Link>
+                <Link to={`/update/${employee._id}`}>
                   <button>Update</button>
                 </Link>
               </td>

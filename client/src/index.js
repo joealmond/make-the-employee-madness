@@ -5,6 +5,8 @@ import './index.css';
 
 import Layout from './Pages/Layout';
 import EmployeeList from './Pages/EmployeeList';
+import EmployeeCreator from './Pages/EmployeeCreator';
+import EmployeeUpdater from './Pages/EmployeeUpdater';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -16,6 +18,15 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <EmployeeList />
+      },
+      {
+
+        path: "/create",
+        element: <EmployeeCreator />
+      },
+      {
+        path: "/update/:id",
+        element: <EmployeeUpdater />
       }
     ]
   }
