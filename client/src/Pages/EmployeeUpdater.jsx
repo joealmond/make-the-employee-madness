@@ -32,19 +32,24 @@ const EmployeeUpdater = () => {
         position
     }
 
-    const res = await fetch(`/api/employees/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(modifiedEmployee),
-    });
+    try {
+        const res = await fetch(`/api/employees/${id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(modifiedEmployee),
+        }); 
 
-    const updated = await res.json();
+        const updated = await res.json();
 
-    if (!res.ok) return "Could not update record.";
+        if (!res.ok) throw new Error("Could not update record.");
 
-    navigate("/");
+        navigate("/");
+
+    } catch (error) {
+        console.error(error)
+    }
   };
 
   return (

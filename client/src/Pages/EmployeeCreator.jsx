@@ -16,19 +16,25 @@ const EmployeeCreator = () => {
       position,
     };
 
-    const res = await fetch("/api/employees/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(employee),
-    });
+    try {
 
-    const created = await res.json();
-
-    if (!res.ok) return "Could not create record.";
-
-    navigate("/");
+        const res = await fetch("/api/employees/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(employee),
+        });
+    
+        const created = await res.json();
+    
+        if (!res.ok) throw new Error("Could not create record.");
+    
+        navigate("/");
+        
+    } catch (error) {
+        console.error(error)
+    }
   };
 
   return (
